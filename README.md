@@ -1,54 +1,52 @@
 # BigModel
-#### 感谢
-感谢阿里巴巴提供的通义灵码插件。
-#### 介绍
-这是一个大模型综合服务平台，意在促进大模型服务与应用在中小型企业中的快速部署与应用以及对大模型不同模块有比较好的认知。平台主要包括大模型服务与应用模块，数据管理模块，开发文档模块。大模型服务应用模块由大模型管理，大模型实例部署，大模型服务监控，大模型服务调用，Prompt工程，AIGC体验交互，智能体开发模，AI工作流，第三方插件集成等内容；数据管理模块包括数据处理，数据清洗，数据回流，数据预训练等内容；开发文档主要包括示例部分和API接口部分，支持HTTP和Python SDK两种调用方式，会逐渐增加中英文两种版本。
-#### 
-软件架构说明
-参考平台结构和权限管理部分。
 
-#### 安装教程
-node 版本：最新版本
-npm 版本：10.9.2
+#### Introduction
+This is a comprehensive large model service platform designed to facilitate rapid deployment and application of large model services in small and medium-sized enterprises, as well as to provide a good understanding of different modules of large models. The platform mainly includes large model service and application modules, data management modules, and development documentation modules. The large model service application module consists of large model management, large model instance deployment, large model service monitoring, large model service invocation, Prompt engineering, AIGC experience interaction, agent development modules, AI workflows, third-party plugin integration, and more; the data management module includes data processing, data cleaning, data feedback, data pre-training, and other content; the development documentation mainly includes example sections and API interface sections, supporting both HTTP and Python SDK invocation methods, with gradual addition of both Chinese and English versions.
 
-#### 使用说明
+#### Software Architecture Description
+Refer to the platform structure and permission management sections.
 
-前端
-> 进入文件夹：cd frontend 
-> npm run dev
-后端
-> 进入文件夹：cd backend
-> npm run start:dev
-##### 测试账号
+#### Installation Guide
+node version: latest version
+npm version: 10.9.2
+
+#### Usage Instructions
+
+Frontend
 ```
-账号：user_test
-密码：user123456
-登录成功后跳转到 /training 页面
-在手机验证码登录中添加了测试手机号检查：
-
-手机号：13800000000
-验证码：123456
-登录成功后同样跳转到 /training 页面
+cd frontend 
+npm run dev
 ```
-#### 参与贡献
+Backend
+```
+cd backend
+npm run start:dev
+```
+##### Test Account
+- Username: user_test Password: user123456 
+> After successful login, you will be redirected to the /training page Test mobile number verification has been added to mobile verification code > login:
 
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
+- Mobile number: 13800000000 Verification code: 123456   
+> After successful login, you will also be redirected to the /training page
 
-#### 开源许可证
 
-本项目采用 Apache License 2.0 许可证。详情请见 [LICENSE](LICENSE) 文件。
+#### Contributing
 
-#### 项目截图
-1. 登录页面
+1. Fork this repository
+2. Create a Feat_xxx branch
+3. Commit code
+4. Create a Pull Request
+
+#### Open Source License
+
+This project uses the Apache License 2.0. See the [LICENSE](LICENSE) file for details.
+
+#### Project Screenshots
+1. Login page
 <img src="./image/user_login.png" width="100%" height="100%">
-2. 大模型服务与应用页面
+2. Large Model Service and Application page
 <img src="./image/modelserver.png" width="100%" height="100%">
-3. 开发中心页面
+3. Development Center page
 <img src="./image/develop.png" width="100%" height="100%">
-4. 数据管理页面
+4. Data Management page
 <img src="./image/dataset_manager.png" width="100%" height="100%">
-
-
