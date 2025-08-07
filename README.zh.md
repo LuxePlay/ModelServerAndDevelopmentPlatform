@@ -1,4 +1,8 @@
 # BigModel
+
+**其他语言版本: [English](README.md), [中文](README_zh.md).**
+
+
 #### 感谢
 感谢阿里巴巴提供的通义灵码插件。
 #### 介绍
