@@ -45,14 +45,10 @@ This project uses the Apache License 2.0. See the [LICENSE](LICENSE) file for de
 
 #### Project Screenshots
 1. Login page
-<img src="./image/user_login_en.png" width="100%" height="100%">
+<img src="./image/user_login.png" width="100%" height="100%">
 2. Large Model Service and Application page
-<img src="./image/modelserver_en.png" width="100%" height="100%">
+<img src="./image/modelserver.png" width="100%" height="100%">
 3. Development Center page
-<img src="./image/develop_en.png" width="100%" height="100%">
+<img src="./image/develop.png" width="100%" height="100%">
 4. Data Management page
-<img src="./image/dataset_manager_en.png" width="100%" height="100%">
-5. Workflow page
-<img src="./image/WorkFloww_en.png" width="100%" height="100%">
-6. Agent Development page
-<img src="./image/Agents_en.png" width="100%" height="100%">
+<img src="./image/dataset_manager.png" width="100%" height="100%">
