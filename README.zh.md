@@ -15,11 +15,22 @@ npm 版本：10.9.2
 #### 使用说明
 
 前端
-> 进入文件夹：cd frontend 
-> npm run dev
+```
+cd frontend
+```
+运行前端
+```
+npm run dev
+```
 后端
-> 进入文件夹：cd backend
-> npm run start:dev
+进入文件夹
+```
+cd backend
+```
+运行后端服务
+```
+npm run start:dev
+```
 ##### 测试账号
 ```
 账号：user_test
