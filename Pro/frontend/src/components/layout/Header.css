@@ -1,0 +1,78 @@
+/* src/components/layout/Header.css */
+.header {
+  background: #fff;
+  padding: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 10;
+  height: 64px; /* 明确设置头部高度 */
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  height: 100%; /* 占满父容器高度 */
+}
+
+.logo h2 {
+  margin: 0;
+  color: #1890ff;
+  font-weight: 600;
+}
+
+.nav-menu {
+  flex: 1;
+  border: none;
+  margin-left: 40px;
+}
+
+.nav-menu .ant-menu-item {
+  font-size: 16px;
+}
+
+.user-menu {
+  color: #555;
+  padding: 0 16px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+}
+
+.user-menu:hover {
+  color: #1890ff;
+  background: #f0f2f5;
+}
+
+.user-menu span {
+  margin: 0 8px;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .header {
+    height: 56px;
+  }
+  
+  .header-content {
+    padding: 0 16px;
+  }
+  
+  .logo h2 {
+    font-size: 18px;
+  }
+  
+  .nav-menu {
+    margin-left: 20px;
+  }
+  
+  .nav-menu .ant-menu-item {
+    font-size: 14px;
+    padding: 0 12px;
+  }
+  
+  .user-menu {
+    padding: 0 8px;
+    height: 56px;
+  }
+}

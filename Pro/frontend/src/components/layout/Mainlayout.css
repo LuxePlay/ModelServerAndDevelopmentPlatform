@@ -1,0 +1,38 @@
+/* src/components/layout/MainLayout.css */
+.main-layout {
+  min-height: 100vh;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
+  padding: 24px;
+  background: #f0f2f5;
+  overflow: auto;
+  height: calc(100vh - 64px); /* 减去头部高度 */
+  width: 100%;
+  max-width: 100%;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .main-content {
+    padding: 16px;
+    height: calc(100vh - 56px); /* 移动端头部高度不同 */
+  }
+}
+
+/* 确保内容区域占满剩余空间 */
+.ant-layout {
+  height: 100%;
+  flex: 1;
+  overflow: hidden;
+}
+
+.ant-layout-content {
+  height: 100%;
+  overflow: auto;
+}

@@ -1,0 +1,148 @@
+/* src/pages/home/Home.css */
+.home-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+}
+
+/* 顶部导航栏 */
+.top-navbar {
+  width: 80%;
+  height: 16%;
+  background-color: #1e1e1e;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  border-bottom: 1px solid #444;
+}
+
+.top-navbar-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  padding: 0 20px;
+}
+
+.nav-logo h2 {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: #fff;
+}
+
+.top-nav-list {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.top-nav-item {
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  height: 100%;
+  color: #e0e0e0;
+  font-size: 1rem;
+}
+
+.top-nav-item:hover {
+  background-color: #333;
+}
+
+.top-nav-item.active {
+  background-color: #333;
+  color: #fff;
+  border-bottom: 3px solid #4a90e2;
+}
+
+.user-center {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.user-name {
+  font-size: 0.9rem;
+  color: #e0e0e0;
+}
+
+.logout-btn {
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: background-color 0.3s;
+}
+
+.logout-btn:hover {
+  background-color: #357ae8;
+}
+
+/* 主体内容区域 */
+.main-content {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* 左侧导航栏 */
+.left-sidebar {
+  width: 220px;
+  background-color: #f5f5f5;
+  border-right: 1px solid #ddd;
+  overflow-y: auto;
+  height: 84%; /* 100% - 16% (顶部导航栏高度) */
+}
+
+.left-sidebar h2 {
+  padding: 20px 20px 10px;
+  margin: 0;
+  color: #333;
+  border-bottom: 1px solid #ddd;
+}
+
+.left-nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.left-nav-item {
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border-left: 3px solid transparent;
+  color: #555;
+}
+
+.left-nav-item:hover {
+  background-color: #e0e0e0;
+}
+
+.left-nav-item.active {
+  background-color: #e3f2fd;
+  border-left: 3px solid #1976d2;
+  color: #1976d2;
+  font-weight: 500;
+}
+
+/* 右侧内容区域 */
+.content-area {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  background-color: #fafafa;
+  height: 84%; /* 100% - 16% (顶部导航栏高度) */
+}
