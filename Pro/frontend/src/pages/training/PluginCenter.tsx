@@ -16,7 +16,10 @@ import {
   Modal,
   Form,
   message,
-  Tabs
+  Tabs,
+  InputNumber,
+  Slider,
+  Divider
 } from 'antd';
 import {
   PlusOutlined,
@@ -61,8 +64,10 @@ const PluginCenter = (): ReactElement => {
   const [categoryFilter, setCategoryFilter] = useState('all');
   const [statusFilter, setStatusFilter] = useState('all');
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isCreateModalVisible, setIsCreateModalVisible] = useState(false); // 新增创建插件模态框状态
   const [selectedPlugin, setSelectedPlugin] = useState<Plugin | null>(null);
   const [form] = Form.useForm();
+  const [createForm] = Form.useForm(); // 新增创建表单实例
 
   // 插件分类
   const categories = [
@@ -75,6 +80,23 @@ const PluginCenter = (): ReactElement => {
     '部署工具',
     '监控分析'
   ];
+
+    // 大模型平台选项
+  const modelPlatforms = [
+    { label: 'Ollama', value: 'Ollama' },
+    { label: '通义千问(qWen)', value: 'qWen' },
+    { label: 'DeepSeek', value: 'DeepSeek' },
+    { label: 'LocalAI', value: 'LocalAI' }
+  ];
+
+  // 各平台默认API URL
+  const defaultApiUrls: Record<string, string> = {
+    'Ollama': 'http://localhost:11434/api/generate',
+    'qWen': 'https://dashscope.aliyuncs.com/api/v1/services/aigc/text-generation/generation',
+    'DeepSeek': 'https://api.deepseek.com/v1/chat/completions',
+    'LocalAI': 'http://localhost:8080/v1/chat/completions'
+  };
+
 
   // 初始化数据
   useEffect(() => {
@@ -246,7 +268,52 @@ const PluginCenter = (): ReactElement => {
     setSelectedPlugin(null);
   };
 
-  const handleInstallPlugin = (plugin: Plugin) => {
+  // 处理创建插件模态框打开
+  const showCreateModal = () => {
+    createForm.setFieldsValue({
+      platform: 'Ollama',
+      apiUrl: defaultApiUrls['Ollama']
+    });
+    setIsCreateModalVisible(true);
+  };
+    // 处理创建插件确认
+  const handleCreateOk = () => {
+    createForm.validateFields().then(values => {
+      // 创建新插件
+      const newPlugin: Plugin = {
+        id: `plugin-${Date.now()}`,
+        name: values.name,
+        version: '1.0.0',
+        description: values.description,
+        status: 'active',
+        category: values.category,
+        creator: '当前用户', // 实际应用中应从用户信息获取
+        createTime: new Date().toISOString().split('T')[0],
+        updateTime: new Date().toISOString().split('T')[0],
+        tags: values.tags || [],
+        downloads: 0,
+        rating: 0
+      };
+      
+      setPlugins([...plugins, newPlugin]);
+      setIsCreateModalVisible(false);
+      createForm.resetFields();
+      message.success('插件创建成功');
+    });
+  };
+    // 处理创建插件取消
+  const handleCreateCancel = () => {
+    setIsCreateModalVisible(false);
+    createForm.resetFields();
+  };
+
+  // 处理平台选择变化
+  const handlePlatformChange = (value: string) => {
+    createForm.setFieldsValue({
+      apiUrl: defaultApiUrls[value]
+    });
+  };
+   const handleInstallPlugin = (plugin: Plugin) => {
     // 模拟安装插件
     const newPlugin: Plugin = {
       ...plugin,
@@ -334,8 +401,9 @@ const PluginCenter = (): ReactElement => {
                       <Option value="error">错误</Option>
                     </Select>
                   </Col>
+                  // ... existing code ...
                   <Col span={4}>
-                    <Button type="primary" icon={<PlusOutlined />}>
+                    <Button type="primary" icon={<PlusOutlined />} onClick={showCreateModal}>
                       创建插件
                     </Button>
                   </Col>
@@ -493,6 +561,93 @@ const PluginCenter = (): ReactElement => {
           </TabPane>
         </Tabs>
       </Card>
+      
+      {/* 创建插件模态框 */}
+      <Modal
+        title="创建插件"
+        visible={isCreateModalVisible}
+        onOk={handleCreateOk}
+        onCancel={handleCreateCancel}
+        width={600}
+      >
+        <Form form={createForm} layout="vertical">
+          <Form.Item 
+            name="name" 
+            label="插件名称" 
+            rules={[{ required: true, message: '请输入插件名称' }]}
+          >
+            <Input placeholder="请输入插件名称" />
+          </Form.Item>
+          
+          <Form.Item 
+            name="description" 
+            label="插件描述"
+            rules={[{ required: true, message: '请输入插件描述' }]}
+          >
+            <Input.TextArea rows={3} placeholder="请输入插件描述" />
+          </Form.Item>
+          
+          <Form.Item 
+            name="category" 
+            label="分类"
+            rules={[{ required: true, message: '请选择插件分类' }]}
+          >
+            <Select placeholder="请选择插件分类">
+              {categories.map(category => (
+                <Option key={category} value={category}>{category}</Option>
+              ))}
+            </Select>
+          </Form.Item>
+          
+          <Form.Item name="tags" label="标签">
+            <Select mode="tags" placeholder="添加标签">
+              {plugins.flatMap(p => p.tags)
+                .filter((tag, index, self) => self.indexOf(tag) === index)
+                .map(tag => (
+                  <Option key={tag} value={tag}>{tag}</Option>
+                ))}
+            </Select>
+          </Form.Item>
+          
+          <Divider orientation="left">大模型配置</Divider>
+          
+          <Form.Item 
+            name="platform" 
+            label="大模型平台"
+            rules={[{ required: true, message: '请选择大模型平台' }]}
+          >
+            <Select placeholder="请选择大模型平台" onChange={handlePlatformChange}>
+              {modelPlatforms.map(platform => (
+                <Option key={platform.value} value={platform.value}>{platform.label}</Option>
+              ))}
+            </Select>
+          </Form.Item>
+          
+          <Form.Item 
+            name="apiUrl" 
+            label="API地址"
+            rules={[{ required: true, message: '请输入API地址' }]}
+          >
+            <Input placeholder="请输入API地址" />
+          </Form.Item>
+          
+          <Form.Item name="apiKey" label="API密钥">
+            <Input.Password placeholder="请输入API密钥（如有需要）" />
+          </Form.Item>
+          
+          <Form.Item name="model" label="模型名称">
+            <Input placeholder="请输入模型名称，如：deepseek-r1:7b" />
+          </Form.Item>
+          
+          <Form.Item name="temperature" label="Temperature (0-1)">
+            <Slider min={0} max={1} step={0.1} />
+          </Form.Item>
+          
+          <Form.Item name="maxTokens" label="最大Token数">
+            <InputNumber style={{ width: '100%' }} placeholder="请输入最大Token数" />
+          </Form.Item>
+        </Form>
+      </Modal>
       
       <Modal
         title="插件配置"
